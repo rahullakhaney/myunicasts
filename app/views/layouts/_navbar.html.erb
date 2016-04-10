@@ -1,0 +1,50 @@
+<header class="top">
+<div class="row collapse">
+<div class="large-12 columns">
+<nav class="top-bar" data-topbar data-options="is_hover: false" role="navigation">
+<ul class="title-area">
+<li class="name">
+<h1>
+<%= link_to "myunicasts", root_path, class: 'logo' %>
+</h1>
+</li>
+<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+</ul>
+<section class="top-bar-section">
+<ul class="right">
+<li><a href="https://www.codecourse.com/premium">Premium</a></li>
+<% if user_signed_in? %>
+  <li class="has-dropdown">
+<a href="#">
+<% if current_user.image? %>
+  <%= image_tag current_user.image, size: '30', class: 'user-avatar user-avatar--light-border user-avatar--right-spacing' %>
+<% else %>
+  <%= gravatar_tag current_user.email, :size => 30, :html => { class: 'user-avatar user-avatar--light-border user-avatar--right-spacing' } %>
+<% end %>
+ Rahul Lakhaney</a>
+<ul class="dropdown"><li class="title back js-generated"><h5><a href="javascript:void(0)">Back</a></h5></li><li class="parent-link hide-for-medium-up"><a class="parent-link js-generated" href="#">
+<% if current_user.image? %>
+  <%= image_tag current_user.image, class: 'user-avatar user-avatar--light-border user-avatar--right-spacing' %>
+<% else %>
+<%= gravatar_tag current_user.email, :size => 30, :html => { class: 'user-avatar user-avatar--light-border user-avatar--right-spacing' } %>
+<% end %>
+ Rahul Lakhaney</a></li>
+<li><%= link_to "Account", edit_user_registration_path %></li>
+<li><a href="https://www.codecourse.com/@rahulyo">Profile</a></li>
+<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+</ul>
+</li>
+<% else %>
+<li><%= link_to "Sign In", new_user_session_path %></li>
+<li><%= link_to "Get an Account", new_user_registration_path %></li>
+<% end %>
+</ul>
+<ul class="right">
+<li><%= link_to "Library", library_index_path %></li>
+<li><a href="https://www.codecourse.com/forum">Community</a></li>
+</ul>
+</section>
+</nav>
+</div>
+</div>
+</header>

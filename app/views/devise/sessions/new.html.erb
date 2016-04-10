@@ -1,0 +1,44 @@
+<body class="form" id="">
+<div class="main-content">
+<div class="center-form">
+<div class="row">
+<div class="large-4 large-offset-4 columns end">
+<h2 class="center-form__logo"> <%= link_to "myunicasts", root_path %>
+</h2>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, class: 'center-form__input', placeholder: 'you@example.com', required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "off", class: 'center-form__input', placeholder: 'password', required: true %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: 'button expand small center-form__cta' %>
+  </div>
+  <%= link_to user_omniauth_authorize_path(:facebook), class: 'button expand small center-form__cta' do %>
+        <i class="fa fa-facebook"> </i> Login with Facebook
+      <% end %>
+<% end %>
+</div>
+<footer class="center-form__footer">
+<ul class="list-inline">
+<li class="list-inline__item"><a href="https://www.codecourse.com/auth/signup"><strong>Sign up</strong></a></li>
+<li class="list-inline__item"><a href="https://www.codecourse.com/account/settings/password/remind">Lost your password?</a></li>
+<li class="list-inline__item"><a href="https://www.codecourse.com/contact">Contact support</a></li>
+</ul>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body>

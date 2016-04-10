@@ -1,0 +1,93 @@
+<%= render 'layouts/sidenav' %>
+<div class="wrapper">
+<div class="midsection clearfix">
+<div class="row left">
+<div class="large-6 columns">
+<h3 class="midsection__pre-header">Lesson</h3>
+<h4 class="midsection__header"><%= @library.name %></h4>
+<div class="midsection__subheader"><p><%= @library.content %></p></div>
+</div>
+<div class="large-6 columns">
+</div>
+</div>
+</div>
+<div class="top-block clearfix">
+<div class="row left">
+<div class="large-12 columns">
+<ul class="top-block__list">
+<li class="top-block__list-item"><%= @library.read_time %> minutes</li>
+<li class="top-block__list-item"><%= @library.lessons.count %> parts</li>
+</ul>
+<ul class="list-inline list-inline--condensed">
+<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
+<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">Laravel</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="main-content clearfix">
+
+<div class="row left" v-if="!$loadingAsyncData">
+<div class="large-12 columns">
+<lesson-content :lesson.sync="lesson" :current.sync="current"></lesson-content>
+        </div>
+    </div>
+
+    <div class="row left">
+        <div class="large-8 columns">
+            <lesson-parts :lesson.sync="lesson" :current.sync="current"></lesson-parts>
+        </div>
+        <div class="large-4 columns">
+            <lesson-downloads :lesson="lesson" :current.sync="current"></lesson-downloads>
+            <lesson-links :lesson="lesson" v-if="lesson.links.length"></lesson-links>
+            <lesson-topics :lesson="lesson" v-if="lesson.topics.length"></lesson-topics>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <div class="row left">
+        <div class="large-8 columns">
+            <div class="container-list">
+    <ul class="container-list__list">
+        <li class="container-list__header"><%= @library.name %></li>
+            <% @lessons.each do |lesson| %>
+            
+            <li class="container-list__item">
+            <% if lesson.header? %>
+                <span class="container-list__item-header prima"><%= lesson.title %></span>
+            <% else %>
+            
+            <%= link_to [lesson.library, lesson], class: "container-list__link" do %>
+    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
+    <span class="container-list__item-header"><%= lesson.title %></span>
+    <span class="container-list__description"><%= lesson.read_time %></span>
+<% end %>
+<% end %>
+        </li>
+        
+            <% end %>
+        </li>
+    </ul>
+</div>
+        </div>
+        <div class="large-4 columns">
+            <div class="container-list">
+    <ul class="container-list__list">
+        <li class="container-list__header">
+            <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Let's Go!
+        </li>
+
+        
+
+        <li class="container-list__item">
+            <a class="container-list__link" href="/video/download/788/hd">Download video</a>
+        </li>
+    </ul>
+</div>
+            
+            
+        </div>
+    </div>
+
+    <%= render 'layouts/lightfooter' %>

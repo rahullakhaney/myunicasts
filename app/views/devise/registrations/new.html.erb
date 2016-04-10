@@ -1,0 +1,60 @@
+<body class="form">
+<div class="main-content">
+<div class="center-form">
+<div class="row">
+<div class="large-4 large-offset-4 columns end">
+<h2 class="center-form__logo"> <%= link_to "myunicasts", root_path %>
+</h2>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= devise_error_messages! %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, class: "center-form__input", placeholder: "you@example.com", required: true %>
+  </div>
+  <div class="field">
+    <%= f.text_field :username, class: "center-form__input", placeholder: "Choose a Username", required: true %>
+  </div>
+
+  <div class="row"> 
+    <div class="large-6 columns">
+      <%= f.text_field :first_name, class: "center-form__input", placeholder: "First Name", required: true %>
+    </div>
+    <div class="large-6 columns">
+      <%= f.text_field :last_name, class: "center-form__input", placeholder: "Last Name", required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    
+    <%= f.password_field :password, autocomplete: "off", class: 'center-form__input', placeholder: 'password', required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'center-form__input', placeholder: 'password confirmation', required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: 'button expand small center-form__cta' %>
+  </div>
+  <div class="text-center">
+    <%= link_to user_omniauth_authorize_path(:facebook), class: 'button expand small center-form__cta' do %>
+        <i class="fa fa-facebook"> </i> Sign Up with Facebook
+      <% end %>
+  </div>
+<% end %>
+</div>
+<footer class="center-form__footer">
+<ul class="list-inline">
+<li class="list-inline__item"><a href="https://www.codecourse.com/auth/signin"><strong>Sign in</strong></a></li>
+<li class="list-inline__item"><a href="https://www.codecourse.com/contact">Contact support</a></li>
+</ul>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body>
+
+
+
+

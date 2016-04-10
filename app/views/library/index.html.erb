@@ -1,0 +1,85 @@
+<body class="">
+<%= render 'layouts/sidenav' %>
+<div class="wrapper">
+<div class="midsection clearfix">
+<div class="row left">
+<div class="large-6 columns">
+<h4 class="midsection__header">Library</h4>
+</div>
+<div class="large-6 columns">
+</div>
+</div>
+</div>
+<div class="main-content clearfix">
+<div class="row left">
+<div class="large-9 columns">
+<% @libraries.each do |library| %>
+<div class="library-item ">
+<div class="library-item__content">
+<h2 class="library-item__title">
+<%= link_to library do %>
+  <%= library.name %>
+<% end %>
+</h2>
+<p><%= library.content %></p>
+<div class="library-item__subjects">
+<span class="tag">PHP</span>
+<span class="tag">Laravel</span>
+</div>
+</div>
+<footer class="library-item__footer clearfix">
+<div class="list-inline">
+<div class="list-inline__item">
+<i class="fa fa-tasks"></i> <%= library.lessons.count %> parts
+</div>
+<div class="list-inline__item">
+<i class="fa fa-clock-o"></i> <%= library.read_time %> minutes
+</div>
+<div class="list-inline__item">
+<i class="fa fa-calendar-o"></i> <%= time_ago_in_words(library.created_at) %> ago
+</div>
+</div>
+</footer>
+</div>
+<% end %>
+<%= render 'layouts/pagination' %>
+</div>
+<div class="large-3 columns">
+<nav class="control-bar">
+<form action="https://www.codecourse.com/library/search">
+<label class="control-bar__search-label" for="search">
+<i class="fa fa-search"></i>
+</label>
+<div class="control-bar__search">
+<input class="control-bar__input" type="text" name="search" id="search" placeholder="Search the library" value="">
+</div>
+</form>
+</nav>
+<div class="container-list">
+<ul class="container-list__list">
+<li class="container-list__header">
+By subject
+</li>
+<li class="container-list__item container-list__item--active">
+<a class="container-list__link" href="https://www.codecourse.com/library">Everything</a>
+</li>
+<li class="container-list__item">
+<a class="container-list__link" href="https://www.codecourse.com/library?subject=php">PHP</a>
+</li>
+<li class="container-list__item">
+<a class="container-list__link" href="https://www.codecourse.com/library?subject=slim">Slim</a>
+</li>
+<li class="container-list__item">
+<a class="container-list__link" href="https://www.codecourse.com/library?subject=laravel">Laravel</a>
+</li>
+<li class="container-list__item">
+<a class="container-list__link" href="https://www.codecourse.com/library?subject=design-patterns">Design patterns</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%= render 'layouts/lightfooter' %>
+</body>

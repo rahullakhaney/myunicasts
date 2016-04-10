@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for  :users, 
+              :path => '', 
+              :path_names => {:sign_in => 'user/login', :sign_up => 'user/signup', :sign_out => 'user/logout', :edit => 'user/account'},
+              :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+  
+  root 'pages#home'
+
+  resources :library do
+    resources :lesson, only: [:show]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
