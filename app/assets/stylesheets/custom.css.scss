@@ -7020,7 +7020,7 @@ meta.foundation-mq-topbar {
     display: block;
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: 12px 0 12px 1.25rem;
     text-transform: none;
     width: 100%
@@ -11257,7 +11257,7 @@ video::-webkit-media-text-track-display {
 }
 footer.main .footer-about p,
 footer.main a {
-    color: #AAA;
+    color: #464646;
     font-weight: 500
 }
 .container,
@@ -11309,7 +11309,7 @@ html {
     padding-left: 0
 }
 .home {
-    background-color: #19272D
+    background-color: #efbe66;
 }
 .home .main-content {
     margin-left: 0
@@ -11350,8 +11350,17 @@ footer.main ul li {
 }
 footer.main .footer-header {
     margin-top: 0;
-    font-weight: 500
+    font-weight: 700;
 }
+
+h5.footer-header {
+    color: #565656;
+}
+
+h6.footer-header {
+    color: #565656;
+}
+
 footer.main a {
     transition: color .2s ease;
     border-bottom: 0;
@@ -11430,7 +11439,7 @@ footer.main a {
 }
 .library-item__title {
     font-size: 1.1em;
-    font-weight: 500
+    font-weight: 600
 }
 .container-list {
     margin-bottom: 20px
@@ -11589,11 +11598,11 @@ footer.main a {
 }
 .button--cta {
     font-weight: 500;
-    background-color: #5cd994;
+    background-color: #3c3f50;
     color: #fff
 }
 .button--cta:hover {
-    background-color: #61e69d;
+    background-color: #4A4D61;
     color: #fff
 }
 .button--center {
@@ -11839,13 +11848,11 @@ small.info {
     min-height: 160px
 }
 .lesson-item-wrapper__content-header {
-    font-size: 1.3em;
-    font-weight: 500;
-    margin-top: 0
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 10px;
 }
-.lesson-item-wrapper__content-description {
-    min-height: 24px
-}
+
 .lesson-item-wrapper__navigation-button {
     font-size: .9em
 }
@@ -11947,7 +11954,7 @@ table tr.selected {
     padding: 0 5px 0 10px
 }
 header.top {
-    background: #19272D
+    background: #efbe66;
 }
 .back-link {
     margin-bottom: 15px
@@ -12014,7 +12021,7 @@ header.top {
     line-height: 2.5;
     font-size: 1.4em;
     margin: 5px 20px 0 15px;
-    font-weight: 500;
+    font-weight: 600;
     color: #FFF;
     opacity: 1;
     transition: opacity .2s ease-in;
@@ -12123,7 +12130,7 @@ header.top {
     }
 }
 .jumbo {
-    background: #19272D;
+    background: #efbe66;
     padding: 60px 15px;
     margin-bottom: 30px;
     overflow: hidden;
@@ -12148,8 +12155,8 @@ header.top {
 }
 .jumbo__subheader {
     margin-bottom: 15px;
-    color: rgba(136, 136, 136, .9);
-    font-size: 1.1em
+    color: rgba(60, 60, 60, 0.9);
+    font-size: 1.1em;
 }
 @media only screen and (min-width: 40.063em) {
     .jumbo {
@@ -12160,9 +12167,9 @@ header.top {
     }
 }
 .centerHeader {
-    font-size: 1.4em;
+    font-size: 2.4em;
     margin: 60px;
-    color: rgba(136, 136, 136, .7)
+    color: rgba(33, 32, 32, 0.7);
 }
 .tag {
     display: inline-block;
@@ -12288,7 +12295,7 @@ header.top {
 }
 .top-block {
     background-color: #FFF;
-    padding: 30px 15px
+    padding: 0px 15px 20px;
 }
 .top-block__list {
     padding: 0;
@@ -12464,7 +12471,7 @@ header.top {
     }
 }
 .side-navigation {
-    background-color: #19272D;
+    background-color: #efbe66;
     position: fixed;
     width: 0;
     right: -50px;
@@ -12526,11 +12533,36 @@ header.top {
 }
 .side-navigation__item-link {
     display: block;
-    color: #fff;
+    color: #292525;
     padding: 0 30px 15px 0;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 30px
 }
+
+.floating{
+    -webkit-animation-name: Floatingx;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-name: Floating;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in-out;
+
+}
+
+@-webkit-keyframes Floatingx{
+    from {-webkit-transform:translate(0, 0px);}
+    65% {-webkit-transform:translate(0, 15px);}
+    to {-webkit-transform: translate(0, -0px);    }    
+}
+    
+@-moz-keyframes Floating{
+    from {-moz-transform:translate(0, 0px);}
+    65% {-moz-transform:translate(0, 15px);}
+    to {-moz-transform: translate(0, -0px);}    
+}
+
 .side-navigation__item-link:hover {
     color: #fefefe
 }

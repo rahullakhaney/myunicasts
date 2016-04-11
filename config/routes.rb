@@ -8,6 +8,7 @@ Rails.application.routes.draw do
               :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
   
   root 'pages#home'
+  get 'premium' => 'pages#premium'
 
   resources :library do
     resources :lesson, only: [:show]
