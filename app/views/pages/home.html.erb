@@ -9,7 +9,7 @@ Hi <%= current_user.first_name.capitalize %>.
 </div>
 <% else %>
 <div class="jumbo__header">
-Learn to code.
+Learn <span class="code-type"></span>
 </div>
 <div class="jumbo__subheader">
 Learn to code and build something amazing with easy to follow tutorials
@@ -143,9 +143,35 @@ What people are saying
 </div>
 </div>
 </div>
-<%= link_to new_user_registration_path, class: 'button button--cta button--center button--top-spacing' do %>
+<hr>
+<div class="partners">
+  <div class="row">
+<div class="large-12 columns">
+<h6 class="text-center">TRUSTED BY</h6>
+  <div class="row">
+  <div class="small-3 columns"><img src="https://s3-us-west-2.amazonaws.com/codeplaceimages/digitalocean.png" /></div>
+  <div class="small-3 columns"><img src="https://s3-us-west-2.amazonaws.com/codeplaceimages/landing_jobs.png" /></div>
+  <div class="small-3 columns"><img src="https://s3-us-west-2.amazonaws.com/codeplaceimages/shiftforward.png" /></div>
+  <div class="small-3 columns"><img src="https://s3-us-west-2.amazonaws.com/codeplaceimages/zomato.jpg" /></div>
+</div>
+  </div>
+</div>
+
+</div>
+<%= link_to new_user_registration_path, class: 'button button--cta button--center button--top-spacing floating' do %>
   Sign up for free
 <% end %>
 </div>
 <%= render 'layouts/footer' %>
 </body>
+<script>
+    $(function(){
+        $(".code-type").typed({
+            strings: ["Ruby on Rails", "Git", "Nodejs", "Angularjs" ,"Reactjs", "Expressjs", "Docker"],
+            typeSpeed: 0,
+            loop: true,
+            typeSpeed: 100,
+            loopCount: 2,
+        });
+    });
+</script>

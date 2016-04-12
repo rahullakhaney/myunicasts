@@ -11257,8 +11257,8 @@ video::-webkit-media-text-track-display {
 }
 footer.main .footer-about p,
 footer.main a {
-    color: #464646;
-    font-weight: 500
+    color: #3c3f50;
+    font-weight: 600
 }
 .container,
 .container-list__list,
@@ -11354,7 +11354,7 @@ footer.main .footer-header {
 }
 
 h5.footer-header {
-    color: #565656;
+    color: #3c3f50;
 }
 
 h6.footer-header {
@@ -11530,7 +11530,7 @@ footer.main a {
     display: block;
     padding: 20px;
     border-bottom: 2px solid #F9F9F9;
-    font-weight: 500
+    font-weight: 600
 }
 .container-list__header-icon {
     margin-right: 3px;
@@ -11872,7 +11872,7 @@ small.info {
 .lesson-item-notice {
     position: relative;
     padding: 40px 20px;
-    background: #222;
+    background: #3c3f50;
     border-radius: 3px;
     color: #FAFAFA
 }
@@ -12505,7 +12505,7 @@ header.top {
     height: 100%
 }
 .side-navigation__logo {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.3em;
     margin-bottom: 40px;
     color: #fff;
@@ -12533,7 +12533,7 @@ header.top {
 }
 .side-navigation__item-link {
     display: block;
-    color: #292525;
+    color: #3c3f50;
     padding: 0 30px 15px 0;
     font-weight: 600;
     line-height: 30px
@@ -12892,7 +12892,7 @@ img.circle {
 }
 
 span.container-list__item-header.prima {
-    font-weight: 700;
+    font-weight: 500;
     padding: 1em 2em 0.7em;
     text-transform: uppercase;
 }
@@ -12902,4 +12902,30 @@ span.container-list__item-header.prima {
     padding: 0 40px 0 0;
     font-weight: 600;
     margin-bottom: 15px;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.partners {
+    padding: 3em 8em 0em;
 }

@@ -38,30 +38,20 @@
         <div class="large-8 columns">
             <div class="container-list">
     <ul class="container-list__list">
-        <li class="container-list__header">            Events and Listeners        </li>
-
+        <li class="container-list__header">            Up Next        </li>
+<% @lessons.limit(4).each do |lesson| %>
         <li class="container-list__item container-list__item--active">
-            
-            <a href="#" class="container-list__link">
+        <% if lesson.header? %>
+                <span class="container-list__item-header prima"><%= lesson.title %></span>
+            <% else %>
+            <%= link_to [lesson.library, lesson], class: 'container-list__link' do %>
     <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
-    <span class="container-list__item-header">Why should we use events and listeners?</span>
-    <span class="container-list__description">04:35</span>
-</a>
-        </li><li class="container-list__item">
-            
-            <a href="#" class="container-list__link">
-    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
-    <span class="container-list__item-header">Getting events and listeners working</span>
-    <span class="container-list__description">16:43</span>
-</a>
-        </li><li class="container-list__item">
-            
-            <a href="#" class="container-list__link">
-    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
-    <span class="container-list__item-header">A taste of queueing</span>
-    <span class="container-list__description">07:18</span>
-</a>
+    <span class="container-list__item-header"><%= lesson.title %></span>
+    <span class="container-list__description"><%= lesson.read_time %></span>
+    <% end %>
         </li>
+        <% end %>
+        <% end %>
     </ul>
 </div>
         </div>

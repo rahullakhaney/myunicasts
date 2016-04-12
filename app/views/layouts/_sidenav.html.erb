@@ -3,7 +3,7 @@
 <a class="side-navigation__toggle" id="navigation-toggle">☰</a>
 <div class="side-navigation__inner">
 <section class="side-navigation__body">
-<%= link_to "myunicasts", root_path, class: 'side-navigation__logo' %>
+<%= link_to "owlcasts", root_path, class: 'side-navigation__logo' %>
 <div class="side-navigation__item side-navigation__item--user">
 <%= link_to edit_user_registration_path, class: 'side-navigation__item-link' do %>
   <% if current_user.image? %>
@@ -44,7 +44,7 @@ Hi <%= current_user.first_name %>!
 <a class="side-navigation__toggle" id="navigation-toggle">☰</a>
 <div class="side-navigation__inner">
 <section class="side-navigation__body">
-<%= link_to "myunicasts", root_path, class: 'side-navigation__logo' %>
+<%= link_to "owlcasts", root_path, class: 'side-navigation__logo' %>
 <div class="side-navigation__item">
 <%= link_to new_user_session_path, class: 'side-navigation__item-link' do %>
   <i class="fa fa-sign-in"></i> &nbsp; Sign in
@@ -64,7 +64,9 @@ Hi <%= current_user.first_name %>!
 <a href="https://www.codecourse.com/forum" class="side-navigation__item-link"><i class="fa fa-comment"></i> &nbsp; Community</a>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
-<a href="https://www.codecourse.com/premium" class="side-navigation__item-link"><i class="fa fa-rocket"></i> &nbsp; Premium</a>
+<%= link_to premium_path, class: 'side-navigation__item-link' do %>
+  <i class="fa fa-rocket"></i> &nbsp; Premium
+<% end %>
 </div>
 </section>
 </div>
