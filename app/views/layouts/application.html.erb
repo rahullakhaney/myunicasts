@@ -6,12 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-<script src="//load.sumome.com/" data-sumo-site-id="6f51ca82da7fd358622a6154108ebe92ed0b80c9a5e1e9d7f7ad7dbafa6c7532" async="async"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
 </head>
 <body>
 <%= yield %>
+<div data-no-turbolink="true">
+<script type="text/javascript">!function(t){function e(n){if(r[n])return r[n].exports;var o=r[n]={exports:{},id:n,loaded:!1};return t[n].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var r={};return e.m=t,e.c=r,e.p="",e(0)}([function(t,e){!function(){var t;return t=window.driftt=window.driftt||[],t.init?void 0:t.invoked?void(window.console&&console.error&&console.error("Driftt snippet included twice.")):(t.invoked=!0,t.methods=["identify","track","reset","debug","show","ping","page","hide","off","on"],t.factory=function(e){return function(){var r;return r=Array.prototype.slice.call(arguments),r.unshift(e),t.push(r),t}},t.methods.forEach(function(e){t[e]=t.factory(e)}),t.load=function(){var t,e,r,n;t=3e5,n=Math.ceil(new Date/t)*t,r=document.createElement("script"),r.type="text/javascript",r.async=!0,r.src="https://js.driftt.com/include/"+n+"/rnebrbgg2dhz.js",e=document.getElementsByTagName("script")[0],e.parentNode.insertBefore(r,e)},t.SNIPPET_VERSION="0.1.0",t.load())}()}]);
+</script>
+<% if user_signed_in? %>
+<script>
+driftt.identify('<%= current_user.id %>', { email: '<%= current_user.email %>' });
+</script>
+</div>
+<% end %>
 </body>
 
 </html>
