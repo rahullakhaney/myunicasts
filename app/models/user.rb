@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
          validates :first_name, presence: true, length: {maximum: 25}
          validates :last_name, presence: true, length: {maximum: 25}
 
-         def confirmation_required?
-          false
-         end
+         # def confirmation_required?
+         #  false
+         # end
 
          def self.from_omniauth(auth)
             user = User.where(email: auth.info.email).first
