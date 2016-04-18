@@ -39,7 +39,7 @@
             <div class="container-list">
     <ul class="container-list__list">
         <li class="container-list__header">            Up Next        </li>
-<% @lessons.limit(4).each do |lesson| %>
+<% @lessons.each do |lesson| %>
         <li class="container-list__item container-list__item--active">
         <% if lesson.header? %>
                 <span class="container-list__item-header prima"><%= lesson.title %></span>

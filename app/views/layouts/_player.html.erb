@@ -1,7 +1,7 @@
 <% if @lesson.video? %>
 <% if user_signed_in? %>
-<div class="row left">
-  <div class="large-12 columns">
+<div class="row left" >
+  <div class="large-12 columns" data-no-turbolink="true">
     <div data-no-turbolink='true' class="lesson-item-wrapper" id="lesson-content">
     <div id="wistia_<%= @lesson.video %>"></div>
       <div class="lesson-item-wrapper__content clearfix">
@@ -14,10 +14,21 @@
       </div>
         <h3 class="lesson-item-wrapper__content-header"><%= @lesson.title %></h3>
         <p class="lesson-item-wrapper__content-description"><%= markdown @lesson.note %></p>
+        
         <div class="lesson-item-wrapper__navigation">
-          <a href="#" class="lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border">
+        <% if !@prev_lesson.nil? %>
+            <%= link_to [@prev_lesson.library, @prev_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--backward lesson-item-wrapper__navigation-button--border' do %>
+            <i class="fa fa-arrow-left"></i> Previous part
+            <% end %>
+            <% end %>
+
+
+            <% if !@next_lesson.nil? %>
+            <%= link_to [@next_lesson.library, @next_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border' do %>
             Next part <i class="fa fa-arrow-right"></i>
-          </a>
+            <% end %>
+            <% end %>
+          
 
 
         </div>
@@ -52,9 +63,19 @@
         <h3 class="lesson-item-wrapper__content-header"><%= @lesson.title %></h3>
         <p class="lesson-item-wrapper__content-description"><%= markdown @lesson.note %></p>
         <div class="lesson-item-wrapper__navigation">
-          <a href="#" class="lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border">
+        <% if !@prev_lesson.nil? %>
+            <%= link_to [@prev_lesson.library, @prev_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--backward lesson-item-wrapper__navigation-button--border' do %>
+            <i class="fa fa-arrow-left"></i> Previous part
+            <% end %>
+            <% end %>
+
+
+            <% if !@next_lesson.nil? %>
+            <%= link_to [@next_lesson.library, @next_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border' do %>
             Next part <i class="fa fa-arrow-right"></i>
-          </a>
+            <% end %>
+            <% end %>
+          
 
 
         </div>
@@ -71,9 +92,19 @@
         <h3 class="lesson-item-wrapper__content-header"><%= @lesson.title %></h3>
         <p class="lesson-item-wrapper__content-description"><%= markdown @lesson.note %></p>
         <div class="lesson-item-wrapper__navigation">
-          <a href="#" class="lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border">
+        <% if !@prev_lesson.nil? %>
+            <%= link_to [@prev_lesson.library, @prev_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--backward lesson-item-wrapper__navigation-button--border' do %>
+            <i class="fa fa-arrow-left"></i> Previous part
+            <% end %>
+            <% end %>
+
+
+            <% if !@next_lesson.nil? %>
+            <%= link_to [@next_lesson.library, @next_lesson], class: 'lesson-item-wrapper__navigation-button lesson-item-wrapper__navigation-button--forward lesson-item-wrapper__navigation-button--border' do %>
             Next part <i class="fa fa-arrow-right"></i>
-          </a>
+            <% end %>
+            <% end %>
+          
 
 
         </div>

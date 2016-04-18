@@ -11854,7 +11854,7 @@ small.info {
 }
 
 .lesson-item-wrapper__navigation-button {
-    font-size: .9em
+    font-size: 1em
 }
 .lesson-item-wrapper__navigation-button--border {
     color: #CCC;
@@ -12928,4 +12928,8 @@ span.container-list__item-header.prima {
 
 .partners {
     padding: 3em 8em 0em;
+}
+
+a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button--backward.lesson-item-wrapper__navigation-button--border {
+    float: left;
 }
