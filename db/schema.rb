@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410141541) do
+ActiveRecord::Schema.define(version: 20160418071558) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 20160410141541) do
   end
 
   add_index "libraries", ["slug"], name: "index_libraries_on_slug", unique: true
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "library_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subscriptions", ["library_id", "user_id"], name: "index_subscriptions_on_library_id_and_user_id", unique: true
+  add_index "subscriptions", ["library_id"], name: "index_subscriptions_on_library_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

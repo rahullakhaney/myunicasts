@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'premium' => 'pages#premium'
 
+  post '/free' => 'charge#free'
+
   resources :library do
     resources :lesson, only: [:show]
   end

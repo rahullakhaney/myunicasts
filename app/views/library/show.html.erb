@@ -7,8 +7,24 @@
 <h4 class="midsection__header"><%= @library.name %></h4>
 <div class="midsection__subheader"><p><%= @library.content %></p></div>
 </div>
+<% if !@joined %>
 <div class="large-6 columns">
+<% if user_signed_in? %>
+<%= form_tag free_path do %>
+<%= hidden_field_tag 'library_id', @library.id %>
+<button type="submit" class="button button--cta right floating">Start Reading</button>
+<% end %>
+<% else %>
+<%= link_to new_user_session_path do %>
+<button type="submit" class="button button--cta right floating">Login to Start Reading</button>
+<% end %>
+<% end %>
 </div>
+<% else %>
+<div class="large-6 columns">
+<button href="#" class="button button--cta right floating">Start Reading</button>
+</div>
+<% end %>
 </div>
 </div>
 <div class="top-block clearfix">
@@ -17,6 +33,11 @@
 <ul class="top-block__list">
 <li class="top-block__list-item"><%= @library.read_time %> minutes</li>
 <li class="top-block__list-item"><%= @library.lessons.count %> parts</li>
+<% if !@joined %>
+<li class="top-block__list-item"><%= @library.price == 0? "Free" : "₹ #{@library.price}" %></li>
+<% else %>
+
+<% end %>
 </ul>
 <ul class="list-inline list-inline--condensed">
 <li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
@@ -85,7 +106,18 @@
         </li>
     </ul>
 </div>
-            
+            <div class="container-list">
+    <ul class="container-list__list">
+        <li class="container-list__header">
+            <i class="fa fa-link container-list__header-icon"></i> Links
+        </li>
+        <li class="container-list__item">
+            <a class="container-list__link" target="_blank" href="https://github.com/ircmaxell/RandomLib">RandomLib on GitHub</a>
+        </li><li class="container-list__item">
+            <a class="container-list__link" target="_blank" href="https://github.com/GrahamCampbell/Laravel-Flysystem">Laravel-Flysystem on GitHub</a>
+        </li>
+    </ul>
+</div>
             
         </div>
     </div>

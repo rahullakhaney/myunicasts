@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
+         has_many :subscriptions
+         has_many :libraries, through: :subscriptions
+
          validates_presence_of :username, length: {maximum: 40}
          validates :first_name, presence: true, length: {maximum: 25}
          validates :last_name, presence: true, length: {maximum: 25}
