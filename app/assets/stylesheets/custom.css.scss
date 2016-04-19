@@ -12959,3 +12959,45 @@ a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button-
         color: #ffffff;
     }
 }
+
+.pagination:before,
+.pagination:after {
+    content: " ";
+    display: table;
+}
+
+.pagination:after {
+    clear:box;
+}
+
+.pagination {
+    text-align: center;
+    margin: 5em 0 3em 0;
+    a, .previous_page, .current, .next_page {
+    padding: 1em 1.5em;
+    margin: 0 0.4em;
+    border-radius: .15em;
+    line-height: 20px;
+    text-decoration: none;
+    background: #FFFFFF;
+    font-weight: 700;
+    font-size: 1em;
+    font-style: normal;
+    color: #3c3f50;
+        &:hover {
+            background: #3c3f50;
+            color: #FFFFFF;
+        }
+    }
+    .current {
+        background: #3c3f50;
+        color: #FFFFFF;
+    }
+    .disabled {
+        color: #C0C0C0;
+        &:hover {
+            color: #C0C0C0;
+            background: #FFFFFF;
+        }
+    }
+}
