@@ -46,14 +46,22 @@
 </div>
 <div class="large-3 columns">
 <nav class="control-bar">
-<form action="https://www.codecourse.com/library/search">
+<!-- <form action="https://www.codecourse.com/library/search">
 <label class="control-bar__search-label" for="search">
 <i class="fa fa-search"></i>
 </label>
 <div class="control-bar__search">
 <input class="control-bar__input" type="text" name="search" id="search" placeholder="Search the library" value="">
 </div>
-</form>
+</form> -->
+<%= search_form_for(@q, url: "/library", method: :get) do |f| %>
+<label class="control-bar__search-label" for="search">
+<i class="fa fa-search"></i>
+</label>
+<div class="control-bar__search">
+            <%= f.search_field :name_cont, class: 'control-bar__input', placeholder: 'Search...' %>
+            <% end %>
+</div>
 </nav>
 <div class="container-list">
 <ul class="container-list__list">

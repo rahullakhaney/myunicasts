@@ -1,7 +1,10 @@
 class LibraryController < ApplicationController
   def index
+    @q = Library.search(params[:q])
+    # @libraries = @q.result
+
     if params[:subject].blank?
-      @libraries = Library.all.order("created_at DESC")
+      @libraries = @q.result.all.order("created_at DESC")
     else
       @subject_id = Subject.find_by(name: params[:subject]).id
       @libraries = Library.where(subject_id: @subject_id).order("created_at DESC")
