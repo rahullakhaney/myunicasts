@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'premium' => 'pages#premium'
 
   post '/free' => 'charge#free'
+  post '/pay' => 'charge#pay'
 
   resources :library do
     resources :lesson, only: [:show]

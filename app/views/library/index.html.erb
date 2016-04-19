@@ -61,20 +61,13 @@
 By subject
 </li>
 <li class="container-list__item container-list__item--active">
-<a class="container-list__link" href="https://www.codecourse.com/library">Everything</a>
+<%= link_to "Everything", library_index_path, class: 'container-list__link' %>
 </li>
+<% Subject.all.each do |subject| %>
 <li class="container-list__item">
-<a class="container-list__link" href="https://www.codecourse.com/library?subject=php">PHP</a>
+<%= link_to subject.name, library_index_path(subject: subject.name), class: 'container-list__link' %>
 </li>
-<li class="container-list__item">
-<a class="container-list__link" href="https://www.codecourse.com/library?subject=slim">Slim</a>
-</li>
-<li class="container-list__item">
-<a class="container-list__link" href="https://www.codecourse.com/library?subject=laravel">Laravel</a>
-</li>
-<li class="container-list__item">
-<a class="container-list__link" href="https://www.codecourse.com/library?subject=design-patterns">Design patterns</a>
-</li>
+<% end %>
 </ul>
 </div>
 </div>

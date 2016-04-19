@@ -12942,3 +12942,20 @@ span.container-list__item-header.prima {
 a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button--backward.lesson-item-wrapper__navigation-button--border {
     float: left;
 }
+
+#notice_wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(60,63,80,0.85);
+    .alert, .notice {
+        padding: 2rem 0;
+        text-align: center;
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+}

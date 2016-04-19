@@ -46,6 +46,8 @@ gem 'redcarpet'
 gem 'friendly_id'
 gem "active_admin-sortable_tree"
 
+gem 'razorpay'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -10,11 +10,72 @@
 <% if !@joined %>
 <div class="large-6 columns">
 <% if user_signed_in? %>
+<% if @library.price == 0 %>
 <%= form_tag free_path do %>
 <%= hidden_field_tag 'library_id', @library.id %>
 <button type="submit" class="button button--cta right floating">Start Reading</button>
 <% end %>
 <% else %>
+<input id="rzp-button1" type="button" value="Pay with razorpay" class="button button--cta right floating">
+<%= form_tag pay_path, id: '' do %>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+$(document).ready(function(){
+  var options = {
+      "key": ENV["RAZORPAY_ID"],
+      "amount": "<%= "#{@library.price_in_cents}" %>",
+      "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
+      "description": "<%= @library.name %>",
+      "image": "/images/product.jpg",
+      "handler": function (response){
+        var mapForm = document.createElement("form");
+        mapForm.target = "_self";
+        mapForm.method = "POST"; // or "post" if appropriate
+        mapForm.action = "/pay";
+
+        var mapInput = document.createElement("input");
+        mapInput.type = "text";
+        mapInput.name = "payment_id";
+        mapInput.value = response.razorpay_payment_id;
+        mapForm.appendChild(mapInput);
+
+        var mapInput2 = document.createElement("input");
+        mapInput2.type = "text";
+        mapInput2.name = "user_id";
+        mapInput2.value = "<%= "#{current_user.id}" %>";
+
+        var mapInput3 = document.createElement("input");
+        mapInput3.type = "text";
+        mapInput3.name = "library_id";
+        mapInput3.value = "<%= "#{@library.id}" %>";
+
+        mapForm.appendChild(mapInput);
+        mapForm.appendChild(mapInput2);
+        mapForm.appendChild(mapInput3);
+
+        mapForm.submit();
+
+      },
+      "prefill": {
+          "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
+          "email": "<%= current_user.email %>"
+      },
+      "theme": {
+          "color": "#efbe66"
+      }
+  };
+  $("#rzp-button1").click(function(e){
+    var rzp1 = new Razorpay(options);
+      rzp1.open();
+      e.preventDefault();
+  });
+
+});
+</script>
+<% end %>
+<% end %>
+<% else %>
+
 <%= link_to new_user_session_path do %>
 <button type="submit" class="button button--cta right floating">Login to Start Reading</button>
 <% end %>
@@ -22,7 +83,13 @@
 </div>
 <% else %>
 <div class="large-6 columns">
-<button href="#" class="button button--cta right floating">Start Reading</button>
+<% @lessons.limit(1).each do |lesson| %>
+<% if !lesson.header? %>
+    <%= link_to [lesson.library, lesson], class: 'button button--cta right floating' do %>
+        Start Reading
+    <% end %>
+    <% end %>
+<% end %>
 </div>
 <% end %>
 </div>

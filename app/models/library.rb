@@ -3,6 +3,7 @@ class Library < ActiveRecord::Base
   friendly_id :name, use: [:slugged, :finders]
 
   has_many :lessons
+  belongs_to :subject
 
   has_many :subscriptions
   has_many :users, through: :subscriptions
@@ -11,4 +12,9 @@ class Library < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 5000 }
   validates :price, presence: true, numericality: { only_integer: true }
   validates :read_time, presence: true, numericality: { only_integer: true }
+
+  def price_in_cents
+    price*100
+  end
+  
 end
