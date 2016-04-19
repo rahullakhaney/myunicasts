@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Myunicasts</title>
+  <title>Owlcasts - Code libraries for developers by developers</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
-<body>
+<body data-no-turbolink="true">
 <% if notice %>
   <div id="notice_wrapper">
     <p class="notice"><%= notice %></p>
