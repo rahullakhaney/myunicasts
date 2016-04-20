@@ -3,7 +3,7 @@
 <div class="center-form">
 <div class="row">
 <div class="large-4 large-offset-4 columns end">
-<h2 class="center-form__logo"> <%= link_to "myunicasts", root_path %>
+<h2 class="center-form__logo"> <%= link_to "Owlcasts", root_path %>
 </h2>
 <div class="container">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -32,9 +32,9 @@
 </div>
 <footer class="center-form__footer">
 <ul class="list-inline">
-<li class="list-inline__item"><a href="https://www.codecourse.com/auth/signup"><strong>Sign up</strong></a></li>
-<li class="list-inline__item"><a href="https://www.codecourse.com/account/settings/password/remind">Lost your password?</a></li>
-<li class="list-inline__item"><a href="https://www.codecourse.com/contact">Contact support</a></li>
+<li class="list-inline__item"><strong><%= link_to "Sign up", new_user_registration_path %></strong></a></li>
+<li class="list-inline__item"><%= link_to "Lost your password", new_password_path('user') %></li>
+<li class="list-inline__item"><a href="mailto:rahul.lakhaney@gmail.com">Contact support</a></li>
 </ul>
 </footer>
 </div>
