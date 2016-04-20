@@ -12016,17 +12016,7 @@ header.top {
     font-size: inherit;
     margin: 0
 }
-.top-bar .name h1 a {
-    display: inline;
-    line-height: 2.5;
-    font-size: 1.4em;
-    margin: 5px 20px 0 15px;
-    font-weight: 600;
-    color: #FFF;
-    opacity: 1;
-    transition: opacity .2s ease-in;
-    padding-left: 0
-}
+
 .browser,
 .tag--faded {
     opacity: .6
@@ -13003,6 +12993,6 @@ a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button-
     }
 }
 
-a.logo {
-    letter-spacing: 4px;
+.logo {
+    padding: .5em 0em;
 }

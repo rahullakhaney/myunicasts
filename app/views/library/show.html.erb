@@ -22,11 +22,11 @@
 <script>
 $(document).ready(function(){
   var options = {
-      "key": ENV["RAZORPAY_ID"],
+      "key": "rzp_live_tf32iY98mPpfPs",
       "amount": "<%= "#{@library.price_in_cents}" %>",
       "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
       "description": "<%= @library.name %>",
-      "image": "/images/product.jpg",
+      "image": "https://s3.amazonaws.com/hellocodebrew/home/owlcastslogo.png",
       "handler": function (response){
         var mapForm = document.createElement("form");
         mapForm.target = "_self";
