@@ -12996,3 +12996,17 @@ a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button-
 .logo {
     padding: .5em 0em;
 }
+
+li.top-block__list-item.price-item {
+    border-color: #3c3f50;
+    color: #3c3f50;
+    font-weight: 600;
+    font-size: 1em;
+    transition: 0.5s;
+    letter-spacing: 0.5px;
+    &:hover {
+        border-color: #3c3f50;
+        background-color: #3c3f50;
+        color: #FFFFFF;
+    }
+}
