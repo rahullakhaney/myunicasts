@@ -2569,7 +2569,7 @@
                             key = history.createKey();
                             if (isSupported) window.history.replaceState(_extends({}, historyState, {
                                 key: key
-                            }), null, path);
+                            }), null);
                         }
                         var location = _PathUtils.parsePath(path);
                         return history.createLocation(_extends({}, location, {
@@ -3637,7 +3637,7 @@
                     var basename = options.basename;
                     if (basename == null && _ExecutionEnvironment.canUseDOM) {
                         var base = document.getElementsByTagName('base')[0];
-                        if (base) basename = _PathUtils.extractPath(base.href);
+                        if (base) basename = base.getAttribute('href');
                     }
 
                     function addBasename(location) {
@@ -3884,7 +3884,7 @@
 
                 function isNestedObject(object) {
                     for (var p in object) {
-                        if (object.hasOwnProperty(p) && typeof object[p] === 'object' && !Array.isArray(object[p]) && object[p] !== null) return true;
+                        if (Object.prototype.hasOwnProperty.call(object, p) && typeof object[p] === 'object' && !Array.isArray(object[p]) && object[p] !== null) return true;
                     }
                     return false;
                 }
@@ -10134,7 +10134,9 @@
                             success = args[2];
                             break;
                         }
+
                     case 1:
+
                         if (_.isFunction(args[0])) {
                             success = args[0];
                         } else if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
@@ -10142,23 +10144,34 @@
                         } else {
                             params = args[0];
                         }
+
                         break;
+
                     case 0:
+
                         break;
+
                     default:
+
                         throw 'Expected up to 4 arguments [params, data, success, error], got ' + args.length + ' arguments';
                 }
+
                 options.data = data;
                 options.params = _.extend({}, options.params, params);
+
                 if (success) {
                     options.success = success;
                 }
+
                 if (error) {
                     options.error = error;
                 }
+
                 return options;
             }
+
             Resource.actions = {
+
                 get: {
                     method: 'GET'
                 },
@@ -10177,60 +10190,111 @@
                 delete: {
                     method: 'DELETE'
                 }
+
             };
+
             module.exports = _.resource = Resource;
+
         }, {
             "./util": 121
         }
     ],
     116: [
         function(require, module, exports) {
+            /**
+             * Service for URL templating.
+             */
+
             var _ = require('../util');
             var ie = document.documentMode;
             var el = document.createElement('a');
 
             function Url(url, params) {
+
                 var options = url,
                     transform;
+
                 if (_.isString(url)) {
                     options = {
                         url: url,
                         params: params
                     };
                 }
+
                 options = _.merge({}, Url.options, this.$options, options);
+
                 Url.transforms.forEach(function(handler) {
                     transform = factory(handler, transform, this.$vm);
                 }, this);
+
                 return transform(options);
             };
+
+            /**
+             * Url options.
+             */
+
             Url.options = {
                 url: '',
                 root: null,
                 params: {}
             };
-            Url.transforms = [require('./template'), require('./legacy'), require('./query'), require('./root')];
+
+            /**
+             * Url transforms.
+             */
+
+            Url.transforms = [
+                require('./template'),
+                require('./legacy'),
+                require('./query'),
+                require('./root')
+            ];
+
+            /**
+             * Encodes a Url parameter string.
+             *
+             * @param {Object} obj
+             */
+
             Url.params = function(obj) {
+
                 var params = [],
                     escape = encodeURIComponent;
+
                 params.add = function(key, value) {
+
                     if (_.isFunction(value)) {
                         value = value();
                     }
+
                     if (value === null) {
                         value = '';
                     }
+
                     this.push(escape(key) + '=' + escape(value));
                 };
+
                 serialize(params, obj);
+
                 return params.join('&').replace(/%20/g, '+');
             };
+
+            /**
+             * Parse a URL and return its components.
+             *
+             * @param {String} url
+             */
+
             Url.parse = function(url) {
+
                 if (ie) {
                     el.href = url;
                     url = el.href;
                 }
+
                 el.href = url;
+
                 return {
                     href: el.href,
                     protocol: el.protocol ? el.protocol.replace(/:$/, '') : '',
@@ -10250,14 +10314,19 @@
             }
 
             function serialize(params, obj, scope) {
+
                 var array = _.isArray(obj),
                     plain = _.isPlainObject(obj),
                     hash;
+
                 _.each(obj, function(value, key) {
+
                     hash = _.isObject(value) || _.isArray(value);
+
                     if (scope) {
                         key = scope + '[' + (plain || hash ? key : '') + ']';
                     }
+
                     if (!scope && array) {
                         params.add(value.name, value.value);
                     } else if (hash) {
@@ -10267,7 +10336,9 @@
                     }
                 });
             }
+
             module.exports = _.url = Url;
+
         }, {
             "../util": 121,
             "./legacy": 117,
@@ -10278,125 +10349,194 @@
     ],
     117: [
         function(require, module, exports) {
+            /**
+             * Legacy Transform.
+             */
+
             var _ = require('../util');
+
             module.exports = function(options, next) {
+
                 var variables = [],
                     url = next(options);
+
                 url = url.replace(/(\/?):([a-z]\w*)/gi, function(match, slash, name) {
+
                     _.warn('The `:' + name + '` parameter syntax has been deprecated. Use the `{' + name + '}` syntax instead.');
+
                     if (options.params[name]) {
                         variables.push(name);
                         return slash + encodeUriSegment(options.params[name]);
                     }
+
                     return '';
                 });
+
                 variables.forEach(function(key) {
                     delete options.params[key];
                 });
+
                 return url;
             };
 
             function encodeUriSegment(value) {
-                return encodeUriQuery(value, true).replace(/%26/gi, '&').replace(/%3D/gi, '=').replace(/%2B/gi, '+');
+
+                return encodeUriQuery(value, true).
+                replace(/%26/gi, '&').
+                replace(/%3D/gi, '=').
+                replace(/%2B/gi, '+');
             }
 
             function encodeUriQuery(value, spaces) {
-                return encodeURIComponent(value).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, (spaces ? '%20' : '+'));
+
+                return encodeURIComponent(value).
+                replace(/%40/gi, '@').
+                replace(/%3A/gi, ':').
+                replace(/%24/g, '$').
+                replace(/%2C/gi, ',').
+                replace(/%20/g, (spaces ? '%20' : '+'));
             }
+
         }, {
             "../util": 121
         }
     ],
     118: [
         function(require, module, exports) {
+            /**
+             * Query Parameter Transform.
+             */
+
             var _ = require('../util');
+
             module.exports = function(options, next) {
+
                 var urlParams = Object.keys(_.url.options.params),
                     query = {},
                     url = next(options);
+
                 _.each(options.params, function(value, key) {
                     if (urlParams.indexOf(key) === -1) {
                         query[key] = value;
                     }
                 });
+
                 query = _.url.params(query);
+
                 if (query) {
                     url += (url.indexOf('?') == -1 ? '?' : '&') + query;
                 }
+
                 return url;
             };
+
         }, {
             "../util": 121
         }
     ],
     119: [
         function(require, module, exports) {
+            /**
+             * Root Prefix Transform.
+             */
+
             var _ = require('../util');
+
             module.exports = function(options, next) {
+
                 var url = next(options);
+
                 if (_.isString(options.root) && !url.match(/^(https?:)?\//)) {
                     url = options.root + '/' + url;
                 }
+
                 return url;
             };
+
         }, {
             "../util": 121
         }
     ],
     120: [
         function(require, module, exports) {
+            /**
+             * URL Template (RFC 6570) Transform.
+             */
+
             var UrlTemplate = require('../lib/url-template');
+
             module.exports = function(options) {
+
                 var variables = [],
                     url = UrlTemplate.expand(options.url, options.params, variables);
+
                 variables.forEach(function(key) {
                     delete options.params[key];
                 });
+
                 return url;
             };
+
         }, {
             "../lib/url-template": 113
         }
     ],
     121: [
         function(require, module, exports) {
+            /**
+             * Utility functions.
+             */
+
             var _ = exports,
                 array = [],
                 console = window.console;
+
             _.warn = function(msg) {
                 if (console && _.warning && (!_.config.silent || _.config.debug)) {
                     console.warn('[VueResource warn]: ' + msg);
                 }
             };
+
             _.error = function(msg) {
                 if (console) {
                     console.error(msg);
                 }
             };
+
             _.trim = function(str) {
                 return str.replace(/^\s*|\s*$/g, '');
             };
+
             _.toLower = function(str) {
                 return str ? str.toLowerCase() : '';
             };
+
             _.isArray = Array.isArray;
+
             _.isString = function(val) {
                 return typeof val === 'string';
             };
+
             _.isFunction = function(val) {
                 return typeof val === 'function';
             };
+
             _.isObject = function(obj) {
                 return obj !== null && typeof obj === 'object';
             };
+
             _.isPlainObject = function(obj) {
                 return _.isObject(obj) && Object.getPrototypeOf(obj) == Object.prototype;
             };
+
             _.options = function(fn, obj, options) {
+
                 options = options || {};
+
                 if (_.isFunction(options)) {
                     options = options.call(obj);
                 }
+
                 return _.merge(fn.bind({
                     $vm: obj,
                     $options: options
@@ -10404,8 +10544,11 @@
                     $options: options
                 });
             };
+
             _.each = function(obj, iterator) {
+
                 var i, key;
+
                 if (typeof obj.length == 'number') {
                     for (i = 0; i < obj.length; i++) {
                         iterator.call(obj[i], obj[i], i);
@@ -10417,28 +10560,40 @@
                         }
                     }
                 }
+
                 return obj;
             };
+
             _.defaults = function(target, source) {
+
                 for (var key in source) {
                     if (target[key] === undefined) {
                         target[key] = source[key];
                     }
                 }
+
                 return target;
             };
+
             _.extend = function(target) {
+
                 var args = array.slice.call(arguments, 1);
+
                 args.forEach(function(arg) {
                     merge(target, arg);
                 });
+
                 return target;
             };
+
             _.merge = function(target) {
+
                 var args = array.slice.call(arguments, 1);
+
                 args.forEach(function(arg) {
                     merge(target, arg, true);
                 });
+
                 return target;
             };
 
@@ -20334,7 +20489,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/forum/topic_contributor_counter.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/forum/topic_contributor_counter.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20366,7 +20521,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/forum/topic_first_post.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/forum/topic_first_post.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20399,7 +20554,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/forum/topic_post.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/forum/topic_post.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20428,7 +20583,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/forum/topic_post_counter.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/forum/topic_post_counter.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20481,7 +20636,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/forum/topic_reply_form.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/forum/topic_reply_form.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20795,7 +20950,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_content.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_content.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20825,7 +20980,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_downloads.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_downloads.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20853,7 +21008,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_links.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_links.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20886,7 +21041,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_parts.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_parts.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20920,7 +21075,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_parts_section.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_parts_section.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20949,7 +21104,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_percent_complete.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_percent_complete.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -20977,7 +21132,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/lesson_topics.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/lesson_topics.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -21026,7 +21181,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/lesson/links/video_link.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/lesson/links/video_link.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -21055,7 +21210,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/user/avatar.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/user/avatar.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {
@@ -21514,7 +21669,7 @@
                     var hotAPI = require("vue-hot-reload-api")
                     hotAPI.install(require("vue"), true)
                     if (!hotAPI.compatible) return
-                    var id = "/home/forge/codecourse.com/releases/20160409231912/resources/assets/scripts/video/player.vue"
+                    var id = "/home/forge/codecourse.com/releases/20160417235710/resources/assets/scripts/video/player.vue"
                     if (!module.hot.data) {
                         hotAPI.createRecord(id, module.exports)
                     } else {

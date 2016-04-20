@@ -12480,7 +12480,7 @@ header.top {
     }
 }
 .side-navigation {
-    background-color: #efbe66;
+    background-color: #2B2D3C;
     position: fixed;
     width: 0;
     right: -50px;
@@ -12515,6 +12515,7 @@ header.top {
 }
 .side-navigation__logo {
     font-weight: 600;
+    letter-spacing: 1px;
     font-size: 1.3em;
     margin-bottom: 40px;
     color: #fff;
@@ -12542,7 +12543,7 @@ header.top {
 }
 .side-navigation__item-link {
     display: block;
-    color: #3c3f50;
+    color: #ffffff;
     padding: 0 30px 15px 0;
     font-weight: 600;
     line-height: 30px
@@ -12573,7 +12574,7 @@ header.top {
 }
 
 .side-navigation__item-link:hover {
-    color: #fefefe
+    color: #CBCFD8;
 }
 @media only screen and (min-width: 64.063em) {
     .side-navigation {
