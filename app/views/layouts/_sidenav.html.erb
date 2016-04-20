@@ -17,25 +17,25 @@ Hi <%= current_user.first_name %>!
 </div>
 <div class="side-navigation__item">
 <%= link_to library_index_path, class: 'side-navigation__item-link' do %>
-  <i class="ion-university"></i> &nbsp; Library
+  <i class="fa fa-graduation-cap"></i> &nbsp; Library
 <% end %>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
-<a href="#" class="side-navigation__item-link"><i class="ion-ios-chatbubble"></i> &nbsp; Community</a>
+<a href="#" class="side-navigation__item-link"><i class="fa fa-comments"></i> &nbsp; Community</a>
 </div>
 <div class="side-navigation__item">
 <%= link_to edit_user_registration_path, class: 'side-navigation__item-link' do %>
-  <i class="ion-person"></i> &nbsp; Account
+  <i class="fa fa-user"></i> &nbsp; Account
 <% end %>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
 <%= link_to premium_path, class: 'side-navigation__item-link' do %>
-<i class="ion-battery-charging"></i> &nbsp; Premium
+<i class="fa fa-credit-card-alt"></i> &nbsp; Premium
 <% end %>
 </div>
 <div class="side-navigation__item">
 <%= link_to destroy_user_session_path, method: :delete, class: 'side-navigation__item-link' do %>
-  <i class="ion-log-out"></i> &nbsp; Sign Out
+  <i class="fa fa-power-off"></i> &nbsp; Sign Out
 <% end %>
 </div>
 </section>
@@ -54,20 +54,21 @@ Hi <%= current_user.first_name %>!
 </div>
 <div class="side-navigation__item">
 <%= link_to new_user_registration_path, class: 'side-navigation__item-link' do %>
-  <i class="fa fa-user-plus"></i> &nbsp; Sign up
+  <i class="fa fa-user"></i> &nbsp; Sign up
 <% end %>
 </div>
+<br/>
 <div class="side-navigation__item">
 <%= link_to library_index_path, class: 'side-navigation__item-link' do %>
-  <i class="fa fa-list-alt"></i> &nbsp; Library
+  <i class="fa fa-graduation-cap"></i> &nbsp; Library
 <% end %>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
-<a href="#" class="side-navigation__item-link"><i class="fa fa-comment"></i> &nbsp; Community</a>
+<a href="#" class="side-navigation__item-link"><i class="fa fa-comments"></i> &nbsp; Community</a>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
 <%= link_to premium_path, class: 'side-navigation__item-link' do %>
-  <i class="fa fa-rocket"></i> &nbsp; Premium
+  <i class="fa fa-credit-card-alt"></i> &nbsp; Premium
 <% end %>
 </div>
 </section>
