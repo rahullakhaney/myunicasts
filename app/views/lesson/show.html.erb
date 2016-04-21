@@ -1,76 +1,77 @@
 <%= render 'layouts/sidenav' %>
 <div class="wrapper">
-<div class="midsection clearfix">
-<div class="row left">
-<div class="large-6 columns">
-<h3 class="midsection__pre-header">Lesson</h3>
-<h4 class="midsection__header"><%= @lesson.title %></h4>
-<div class="midsection__subheader"><p>
-    <% if @lesson.note.length < 200 %>
-        <%= @lesson.note %>
-    <% end %>
-</p></div>
-</div>
-<div class="large-6 columns">
-</div>
-</div>
-</div>
-<div class="top-block clearfix">
-<div class="row left">
-<div class="large-12 columns">
-<ul class="top-block__list">
-<li class="top-block__list-item"><%= @lesson.read_time %> minutes</li>
-<li class="top-block__list-item"><%= @lessons.count %> parts</li>
-</ul>
-<ul class="list-inline list-inline--condensed">
-<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
-<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">Laravel</span></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="main-content clearfix"></div>
+    <div class="midsection clearfix">
+        <div class="row left">
+            <div class="large-6 columns">
+                <h3 class="midsection__pre-header">Lesson</h3>
+                <h4 class="midsection__header"><%= @lesson.title %></h4>
+                <div class="midsection__subheader"><p>
+                    <% if @lesson.note.length < 200 %>
+                    <%= @lesson.note %>
+                    <% end %>
+                </p></div>
+            </div>
+            <div class="large-6 columns">
+            </div>
+        </div>
+    </div>
+    <div class="top-block clearfix">
+        <div class="row left">
+            <div class="large-12 columns">
+                <ul class="top-block__list">
+                    <li class="top-block__list-item"><%= @lesson.read_time %> minutes</li>
+                    <li class="top-block__list-item"><%= @lessons.count %> parts</li>
+                </ul>
+                <ul class="list-inline list-inline--condensed">
+                    <li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
+                    <li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">Laravel</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-content clearfix"></div>
 </div>
 
 
 <%= render 'layouts/player' %>
-    <div class="row left">
-        <div class="large-8 columns">
-            <div class="container-list">
-    <ul class="container-list__list">
-        <li class="container-list__header">            Up Next        </li>
-<% @lessons.each do |lesson| %>
-        <li class="container-list__item container-list__item--active">
-        <% if lesson.header? %>
-                <span class="container-list__item-header prima"><%= lesson.title %></span>
-            <% else %>
-            <%= link_to [lesson.library, lesson], class: 'container-list__link' do %>
-    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
-    <span class="container-list__item-header"><%= lesson.title %></span>
-    <span class="container-list__description"><%= lesson.read_time %></span>
-    <% end %>
-        </li>
-        <% end %>
-        <% end %>
-    </ul>
-</div>
+<div class="row left">
+    <div class="large-8 columns">
+        <div class="container-list">
+            <ul class="container-list__list">
+                <li class="container-list__header">            Up Next        </li>
+                <% @lessons.each do |lesson| %>
+                <li class="container-list__item container-list__item--active">
+                    <% if lesson.header? %>
+                    <span class="container-list__item-header prima"><%= lesson.title %></span>
+                    <% else %>
+                    <%= link_to [lesson.library, lesson], class: 'container-list__link' do %>
+                    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
+                    <span class="container-list__item-header"><%= lesson.title %></span>
+                    <span class="container-list__description"><%= lesson.read_time %></span>
+                    <% end %>
+                </li>
+                <% end %>
+                <% end %>
+            </ul>
         </div>
-        <div class="large-4 columns">
-            <div class="container-list">
-    <ul class="container-list__list">
-        <li class="container-list__header">
-            <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Downloads
-        </li>
-        <li class="container-list__item">
-            <a class="container-list__link" href="/video/download/788/hd">Download video</a>
-        </li>
-    </ul>
-    
-</div>
-            
-            
-        </div>
+        <%= render 'lesson/disqus' %>
     </div>
+    <div class="large-4 columns">
+        <div class="container-list">
+            <ul class="container-list__list">
+                <li class="container-list__header">
+                    <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Downloads
+                </li>
+                <li class="container-list__item">
+                    <a class="container-list__link" href="/video/download/788/hd">Download video</a>
+                </li>
+            </ul>
+
         </div>
+
+
     </div>
+</div>
+</div>
+</div>
 <%= render 'layouts/lightfooter' %>
