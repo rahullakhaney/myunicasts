@@ -1,6 +1,7 @@
 class LibraryController < ApplicationController
   def index
     @meta_title = meta_title 'Code libraries for developers'
+    @meta_description = 'Perfect learning environment for developers, by developers. No monthly subscriptions.'
     @q = Library.search(params[:q])
     # @libraries = @q.result
 
@@ -15,6 +16,7 @@ class LibraryController < ApplicationController
   def show
     @library = Library.find(params[:id])
     @meta_title = meta_title @library.name
+    @meta_description = meta_description @library.content
     @lessons = @library.lessons.order(:tag)
 
     @joined = false
