@@ -3,7 +3,7 @@
 <a class="side-navigation__toggle" id="navigation-toggle">☰</a>
 <div class="side-navigation__inner">
 <section class="side-navigation__body">
-<%= link_to "OWLCASTS", root_path, class: 'side-navigation__logo' %>
+<%= link_to "owlcasts", root_path, class: 'side-navigation__logo' %>
 <div class="side-navigation__item side-navigation__item--user">
 <%= link_to edit_user_registration_path, class: 'side-navigation__item-link' do %>
   <% if current_user.image? %>
@@ -63,7 +63,6 @@ Hi <%= current_user.first_name %>!
 <% end %>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
-<a href="#" class="side-navigation__item-link"><i class="fa fa-comments"></i> &nbsp; Community</a>
 </div>
 <div class="side-navigation__item side-navigation__item--last">
 <%= link_to premium_path, class: 'side-navigation__item-link' do %>

@@ -13,10 +13,10 @@
 <% if @library.price == 0 %>
 <%= form_tag free_path do %>
 <%= hidden_field_tag 'library_id', @library.id %>
-<button type="submit" class="button button--cta right floating">Start Reading</button>
+<button type="submit" class="button button--cta right floating">Enroll Now</button>
 <% end %>
 <% else %>
-<input id="rzp-button1" type="button" value="Start Reading" class="button button--cta right floating">
+<input id="rzp-button1" type="button" value="Purchase This Library" class="button button--cta right floating">
 <%= form_tag pay_path, id: '' do %>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
