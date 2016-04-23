@@ -6916,8 +6916,9 @@ meta.foundation-mq-topbar {
 .top-bar .name h4,
 .top-bar .name p,
 .top-bar .name span {
-    font-size: 1.0625rem;
+    font-size: 1.7rem;
     line-height: 3.75rem;
+    font-weight: 700;
     margin: 0
 }
 .top-bar .name h1 a,
@@ -6928,7 +6929,7 @@ meta.foundation-mq-topbar {
 .top-bar .name span a {
     color: #FFF;
     display: block;
-    font-weight: 400;
+    font-weight: 600;
     padding: 0 1.25rem;
     width: 75%
 }
@@ -12993,9 +12994,6 @@ a.lesson-item-wrapper__navigation-button.lesson-item-wrapper__navigation-button-
     }
 }
 
-.logo {
-    padding: .5em 0em;
-}
 
 li.top-block__list-item.price-item {
     border-color: #3c3f50;
