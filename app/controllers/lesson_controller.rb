@@ -18,7 +18,7 @@ class LessonController < ApplicationController
       @next_lesson = @lesson.next
       @prev_lesson = @lesson.prev
     else
-      flash[:notice] = "You don't have the permission to view this page"
+      flash[:notice] = "You don't have the permission to access this page"
       redirect_to library
     end
   end
