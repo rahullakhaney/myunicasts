@@ -4,7 +4,7 @@
         <div class="row left">
             <div class="large-6 columns">
                 <h3 class="midsection__pre-header">Lesson</h3>
-                <h4 class="midsection__header"><%= @lesson.title %></h4>
+                <h4 class="midsection__header"><i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; <%= @lesson.title %></h4>
                 <div class="midsection__subheader"><p>
                     <% if @lesson.note.length < 200 %>
                     <%= @lesson.note %>
