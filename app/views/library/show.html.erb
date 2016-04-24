@@ -156,9 +156,11 @@ $("#rzp-button1").click(function(e){
      <div class="container-list">
             <ul class="container-list__list">
                 <li class="container-list__header"><i class="fa fa-code" aria-hidden="true"></i> &nbsp;What you will Learn</li>
+                <% if @library.description? %>
                 <li class="container-list__item1">
                     <p class="lesson-item-wrapper__content-description"><%= markdown(@library.description) %></p>
                 </li>
+                <% end %>
                 </ul>
      </div>
         <div class="container-list">
@@ -191,14 +193,21 @@ $("#rzp-button1").click(function(e){
             <li class="container-list__header">
                 <i class="fa fa-link container-list__header-icon"></i> Links
             </li>
+            <% if @library.preview? %>
             <li class="container-list__item">
                 <a class="container-list__link" target="_blank" href="<%= @library.preview %>"><i class="fa fa-external-link "></i> &nbsp;Preview Application</a>
             </li>
+            <% end %>
+            <% if @library.github? %>
             <li class="container-list__item">
                 <a class="container-list__link" target="_blank" href="<%= @library.github %>/fork"><i class="fa fa-code-fork "></i> &nbsp;Fork on Github</a>
-            </li><li class="container-list__item">
+            </li>
+            <% end %>
+            <% if @library.github? %>
+            <li class="container-list__item">
             <a class="container-list__link" target="_blank" href="<%= @library.github %>/archive/master.zip"><i class="fa fa-cloud-download "></i> &nbsp;Download Source Code</a>
         </li>
+        <% end %>
     </ul>
 </div>
 

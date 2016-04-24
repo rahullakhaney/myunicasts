@@ -1,4 +1,7 @@
 class LibraryController < ApplicationController
+  
+  before_action :authenticate_user!, only: [:list]
+
   def index
     @meta_title = meta_title 'Code libraries for developers'
     @meta_description = 'Perfect learning environment for developers, by developers. No monthly subscriptions.'
@@ -10,6 +13,12 @@ class LibraryController < ApplicationController
     else
       @subject_id = Subject.find_by(name: params[:subject]).id
       @libraries = Library.where(subject_id: @subject_id).order("created_at DESC").paginate(page: params[:page], per_page: 6)
+    end
+  end
+
+  def list
+    if !current_user.nil?
+      @libraries = current_user.libraries
     end
   end
 

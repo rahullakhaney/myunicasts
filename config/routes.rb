@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   root 'pages#home'
   get 'premium' => 'pages#premium'
+  get 'mylibrary' => 'library#list'
 
   get    "lessons/read" => "completeds#show"
   post   "lessons/mark_as_complete" => "completeds#create"

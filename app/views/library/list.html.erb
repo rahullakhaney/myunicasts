@@ -1,0 +1,54 @@
+<body class="">
+<%= render 'layouts/sidenav' %>
+<div class="midsection clearfix">
+<div class="row left">
+<div class="large-12 columns">
+<h4 class="midsection__header">My Library</h4>
+</div>
+</div>
+</div>
+<div class="main-content clearfix">
+<div class="row left">
+<div class="large-9 columns">
+<% @libraries.each do |library| %>
+<div class="library-item ">
+<div class="library-item__content">
+<h2 class="library-item__title">
+<%= link_to library do %>
+  <%= library.name %>
+<% end %>
+</h2>
+<p><%= library.content %></p>
+<div class="library-item__subjects">
+<span class="tag">Ruby on Rails</span>
+<span class="tag">Postgresql</span>
+</div>
+</div>
+<footer class="library-item__footer clearfix">
+<div class="list-inline">
+<div class="list-inline__item">
+<i class="fa fa-tasks"></i> <%= library.lessons.count %> parts
+</div>
+<div class="list-inline__item">
+<i class="fa fa-clock-o"></i> <%= library.read_time %> minutes
+</div>
+<div class="list-inline__item">
+<i class="fa fa-calendar-o"></i> <%= time_ago_in_words(library.created_at) %> ago
+</div>
+<div class="list-inline__item right hide-for-medium-down">
+33% complete
+</div>
+</div>
+<div class="library-item__progress-bar library-item__progress-bar--with-fill">
+<span class="library-item__progress-bar-fill" style="width: 33%;"></span>
+</div>
+</footer>
+</div>
+<% end %>
+
+</div>
+</div>
+</div>
+
+<%= render 'layouts/lightfooter' %>
+</body>

@@ -20,6 +20,11 @@ Hi <%= current_user.first_name %>!
   <i class="fa fa-graduation-cap"></i> &nbsp; Library
 <% end %>
 </div>
+<div class="side-navigation__item">
+<%= link_to mylibrary_path, class: 'side-navigation__item-link' do %>
+  <i class="fa fa-bookmark"></i> &nbsp; My Libraries
+<% end %>
+</div>
 <div class="side-navigation__item side-navigation__item--last">
 </div>
 <div class="side-navigation__item">
@@ -45,7 +50,7 @@ Hi <%= current_user.first_name %>!
 <a class="side-navigation__toggle" id="navigation-toggle">☰</a>
 <div class="side-navigation__inner">
 <section class="side-navigation__body">
-<%= link_to "OWLCASTS", root_path, class: 'side-navigation__logo' %>
+<%= link_to "owlcasts", root_path, class: 'side-navigation__logo' %>
 <div class="side-navigation__item">
 <%= link_to new_user_session_path, class: 'side-navigation__item-link' do %>
   <i class="fa fa-sign-in"></i> &nbsp; Sign in
