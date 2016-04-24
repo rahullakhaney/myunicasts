@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419062919) do
+ActiveRecord::Schema.define(version: 20160424060855) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20160419062919) do
     t.datetime "updated_at", null: false
     t.string   "slug"
     t.integer  "subject_id"
+    t.string   "video"
+    t.string   "github"
   end
 
   add_index "libraries", ["slug"], name: "index_libraries_on_slug", unique: true

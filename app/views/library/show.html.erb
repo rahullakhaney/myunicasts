@@ -143,16 +143,11 @@ $("#rzp-button1").click(function(e){
             <div class="lesson-item-wrapper__video-container">
                 <div id="wistia_<%= @library.video %>"></div>
             </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="lesson-item-wrapper__content clearfix">
-    <h3 class="lesson-item-wrapper__content-header">Installing Eloquent</h3>
-    <p class="lesson-item-wrapper__content-description">Start out by installing Eloquent and getting it added to your container. Then, we're ready to roll.</p>
+        
     
-</div>
+
+
+
 </div>
 </div>
 </div>
@@ -166,7 +161,7 @@ $("#rzp-button1").click(function(e){
 
                 <li class="container-list__item">
                     <% if lesson.header? %>
-                    <span class="container-list__item-header prima"><%= lesson.title %></span>
+                    <span class="container-list__item-header prima"><i class="fa fa-bookmark" aria-hidden="true"></i>  &nbsp;<%= lesson.title %></span>
                     <% else %>
 
                     <%= link_to [lesson.library, lesson], class: "container-list__link" do %>
@@ -183,28 +178,16 @@ $("#rzp-button1").click(function(e){
     </div>
 </div>
 <div class="large-4 columns">
-    <div class="container-list">
-        <ul class="container-list__list">
-            <li class="container-list__header">
-                <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Let's Go!
-            </li>
-
-
-
-            <li class="container-list__item">
-                <a class="container-list__link" href="/video/download/788/hd">Download video</a>
-            </li>
-        </ul>
-    </div>
+    
     <div class="container-list">
         <ul class="container-list__list">
             <li class="container-list__header">
                 <i class="fa fa-link container-list__header-icon"></i> Links
             </li>
             <li class="container-list__item">
-                <a class="container-list__link" target="_blank" href="https://github.com/ircmaxell/RandomLib">RandomLib on GitHub</a>
+                <a class="container-list__link" target="_blank" href="<%= @library.github %>/fork">Fork on Github</a>
             </li><li class="container-list__item">
-            <a class="container-list__link" target="_blank" href="https://github.com/GrahamCampbell/Laravel-Flysystem">Laravel-Flysystem on GitHub</a>
+            <a class="container-list__link" target="_blank" href="<%= @library.github %>/archive/master.zip">Download Source Code</a>
         </li>
     </ul>
 </div>
