@@ -143,7 +143,6 @@ $("#rzp-button1").click(function(e){
             <div class="lesson-item-wrapper__video-container">
                 <div id="wistia_<%= @library.video %>"></div>
             </div>
-        
     
 
 
@@ -154,6 +153,14 @@ $("#rzp-button1").click(function(e){
 
 <div class="row left">
     <div class="large-8 columns">
+     <div class="container-list">
+            <ul class="container-list__list">
+                <li class="container-list__header"><i class="fa fa-code" aria-hidden="true"></i> &nbsp;What you will Learn</li>
+                <li class="container-list__item1">
+                    <p class="lesson-item-wrapper__content-description"><%= markdown(@library.description) %></p>
+                </li>
+                </ul>
+     </div>
         <div class="container-list">
             <ul class="container-list__list">
                 <li class="container-list__header"><i class="fa fa-graduation-cap" aria-hidden="true"></i> &nbsp;Lessons</li>
