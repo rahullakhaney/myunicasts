@@ -1,35 +1,35 @@
 <%= render 'layouts/sidenav' %>
 <div class="wrapper">
-<div class="midsection clearfix">
-<div class="row left">
-<div class="large-6 columns">
-<h3 class="midsection__pre-header">Lesson</h3>
-<h4 class="midsection__header"><%= @library.name %></h4>
-<div class="midsection__subheader"><p><%= @library.content %></p></div>
-</div>
-<% if !@joined %>
-<div class="large-6 columns">
-<% if user_signed_in? %>
-<% if @library.price == 0 %>
-<%= form_tag free_path do %>
-<%= hidden_field_tag 'library_id', @library.id %>
-<button type="submit" class="button button--cta right floating">Enroll Now</button>
-<% end %>
-<% else %>
-<input id="rzp-button1" type="button" value="Purchase This Library" class="button button--cta right floating">
-<%= form_tag pay_path, id: '' do %>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-$(document).ready(function(){
-  var options = {
-      "key": "rzp_live_tf32iY98mPpfPs",
-      "amount": "<%= "#{@library.price_in_cents}" %>",
-      "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
-      "description": "<%= @library.name %>",
-      "image": "https://s3.amazonaws.com/hellocodebrew/home/owlcastslogo.png",
-      "handler": function (response){
-        var mapForm = document.createElement("form");
-        mapForm.target = "_self";
+    <div class="midsection clearfix">
+        <div class="row left">
+            <div class="large-6 columns">
+                <h3 class="midsection__pre-header">Lesson</h3>
+                <h4 class="midsection__header"><%= @library.name %></h4>
+                <div class="midsection__subheader"><p><%= @library.content %></p></div>
+            </div>
+            <% if !@joined %>
+            <div class="large-6 columns">
+                <% if user_signed_in? %>
+                <% if @library.price == 0 %>
+                <%= form_tag free_path do %>
+                <%= hidden_field_tag 'library_id', @library.id %>
+                <button type="submit" class="button button--cta right floating">Enroll Now</button>
+                <% end %>
+                <% else %>
+                <input id="rzp-button1" type="button" value="Purchase This Library" class="button button--cta right floating">
+                <%= form_tag pay_path, id: '' do %>
+                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script>
+                    $(document).ready(function(){
+                      var options = {
+                          "key": "rzp_live_tf32iY98mPpfPs",
+                          "amount": "<%= "#{@library.price_in_cents}" %>",
+                          "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
+                          "description": "<%= @library.name %>",
+                          "image": "https://s3.amazonaws.com/hellocodebrew/home/owlcastslogo.png",
+                          "handler": function (response){
+                            var mapForm = document.createElement("form");
+                            mapForm.target = "_self";
         mapForm.method = "POST"; // or "post" if appropriate
         mapForm.action = "/pay";
 
@@ -55,20 +55,20 @@ $(document).ready(function(){
 
         mapForm.submit();
 
-      },
-      "prefill": {
-          "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
-          "email": "<%= current_user.email %>"
-      },
-      "theme": {
-          "color": "#efbe66"
-      }
-  };
-  $("#rzp-button1").click(function(e){
+    },
+    "prefill": {
+      "name": "<%= current_user.first_name %> <%= current_user.last_name %>",
+      "email": "<%= current_user.email %>"
+  },
+  "theme": {
+      "color": "#efbe66"
+  }
+};
+$("#rzp-button1").click(function(e){
     var rzp1 = new Razorpay(options);
-      rzp1.open();
-      e.preventDefault();
-  });
+    rzp1.open();
+    e.preventDefault();
+});
 
 });
 </script>
@@ -83,40 +83,40 @@ $(document).ready(function(){
 </div>
 <% else %>
 <div class="large-6 columns">
-<% @lessons.limit(1).each do |lesson| %>
-<% if !lesson.header? %>
+    <% @lessons.limit(1).each do |lesson| %>
+    <% if !lesson.header? %>
     <%= link_to [lesson.library, lesson], class: 'button button--cta right floating' do %>
-        Start Reading
+    Start Reading
     <% end %>
     <% end %>
-<% end %>
+    <% end %>
 </div>
 <% end %>
 </div>
 </div>
 <div class="top-block clearfix">
-<div class="row left">
-<div class="large-12 columns">
-<ul class="top-block__list">
-<li class="top-block__list-item"><%= @library.read_time %> minutes</li>
-<li class="top-block__list-item"><%= @library.lessons.count %> parts</li>
-<% if !@joined %>
-<li class="top-block__list-item price-item"><%= @library.price == 0? "Free" : "₹ #{@library.price}" %></li>
-<% else %>
-<% end %>
-</ul>
-<ul class="list-inline list-inline--condensed">
-<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
-<li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">Laravel</span></li>
-</ul>
-</div>
-</div>
+    <div class="row left">
+        <div class="large-12 columns">
+            <ul class="top-block__list">
+                <li class="top-block__list-item"><%= @library.read_time %> minutes</li>
+                <li class="top-block__list-item"><%= @library.lessons.count %> parts</li>
+                <% if !@joined %>
+                <li class="top-block__list-item price-item"><%= @library.price == 0? "Free" : "₹ #{@library.price}" %></li>
+                <% else %>
+                <% end %>
+            </ul>
+            <ul class="list-inline list-inline--condensed">
+                <li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">PHP</span></li>
+                <li class="list-inline__item list-inline__item--condensed"><span class="tag tag--condensed">Laravel</span></li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="main-content clearfix">
 
-<div class="row left" v-if="!$loadingAsyncData">
-<div class="large-12 columns">
-<lesson-content :lesson.sync="lesson" :current.sync="current"></lesson-content>
+    <div class="row left" v-if="!$loadingAsyncData">
+        <div class="large-12 columns">
+            <lesson-content :lesson.sync="lesson" :current.sync="current"></lesson-content>
         </div>
     </div>
 
@@ -130,62 +130,96 @@ $(document).ready(function(){
             <lesson-topics :lesson="lesson" v-if="lesson.topics.length"></lesson-topics>
         </div>
     </div>
+</div>
+</div>
+
+
+
+<div class="row left">
+    <div class="large-12 columns">
+
+
+        <div class="lesson-item-wrapper" id="lesson-content">
+            <div class="lesson-item-wrapper__video-container">
+                <div id="wistia_<%= @library.video %>"></div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="row left">
-        <div class="large-8 columns">
-            <div class="container-list">
-    <ul class="container-list__list">
-        <li class="container-list__header"><%= @library.name %></li>
-            <% @lessons.each do |lesson| %>
-            
+
+<div class="lesson-item-wrapper__content clearfix">
+    <h3 class="lesson-item-wrapper__content-header">Installing Eloquent</h3>
+    <p class="lesson-item-wrapper__content-description">Start out by installing Eloquent and getting it added to your container. Then, we're ready to roll.</p>
+    
+</div>
+</div>
+</div>
+</div>
+
+<div class="row left">
+    <div class="large-8 columns">
+        <div class="container-list">
+            <ul class="container-list__list">
+                <li class="container-list__header"><%= @library.name %></li>
+                <% @lessons.each do |lesson| %>
+
+                <li class="container-list__item">
+                    <% if lesson.header? %>
+                    <span class="container-list__item-header prima"><%= lesson.title %></span>
+                    <% else %>
+
+                    <%= link_to [lesson.library, lesson], class: "container-list__link" do %>
+                    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
+                    <span class="container-list__item-header"><%= lesson.title %></span>
+                    <span class="container-list__description"><%= lesson.read_time %></span>
+                    <% end %>
+                    <% end %>
+                </li>
+
+                <% end %>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="large-4 columns">
+    <div class="container-list">
+        <ul class="container-list__list">
+            <li class="container-list__header">
+                <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Let's Go!
+            </li>
+
+
+
             <li class="container-list__item">
-            <% if lesson.header? %>
-                <span class="container-list__item-header prima"><%= lesson.title %></span>
-            <% else %>
-            
-            <%= link_to [lesson.library, lesson], class: "container-list__link" do %>
-    <span class="container-list__icon"><i class="fa fa-play-circle-o"></i></span>
-    <span class="container-list__item-header"><%= lesson.title %></span>
-    <span class="container-list__description"><%= lesson.read_time %></span>
-<% end %>
-<% end %>
-        </li>
-        
-            <% end %>
-        </li>
-    </ul>
-</div>
-        </div>
-        <div class="large-4 columns">
-            <div class="container-list">
-    <ul class="container-list__list">
-        <li class="container-list__header">
-            <i class="fa fa-arrow-circle-down container-list__header-icon"></i> Let's Go!
-        </li>
-
-        
-
-        <li class="container-list__item">
-            <a class="container-list__link" href="/video/download/788/hd">Download video</a>
-        </li>
-    </ul>
-</div>
-            <div class="container-list">
-    <ul class="container-list__list">
-        <li class="container-list__header">
-            <i class="fa fa-link container-list__header-icon"></i> Links
-        </li>
-        <li class="container-list__item">
-            <a class="container-list__link" target="_blank" href="https://github.com/ircmaxell/RandomLib">RandomLib on GitHub</a>
-        </li><li class="container-list__item">
+                <a class="container-list__link" href="/video/download/788/hd">Download video</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-list">
+        <ul class="container-list__list">
+            <li class="container-list__header">
+                <i class="fa fa-link container-list__header-icon"></i> Links
+            </li>
+            <li class="container-list__item">
+                <a class="container-list__link" target="_blank" href="https://github.com/ircmaxell/RandomLib">RandomLib on GitHub</a>
+            </li><li class="container-list__item">
             <a class="container-list__link" target="_blank" href="https://github.com/GrahamCampbell/Laravel-Flysystem">Laravel-Flysystem on GitHub</a>
         </li>
     </ul>
 </div>
-            
-        </div>
-    </div>
 
-    <%= render 'layouts/lightfooter' %>
+</div>
+</div>
+<script src="https://fast.wistia.net/static/E-v1.js"></script>
+<script>
+  wistiaEmbed = Wistia.embed("<%= @library.video %>", {
+    videoQuality: "hd-only",
+    videoFoam: true
+  });
+
+  function setPlaySpeed(speed) {
+    wistiaEmbed.playbackRate(speed);
+  }
+</script>
+<%= render 'layouts/lightfooter' %>

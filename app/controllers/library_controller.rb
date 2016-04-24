@@ -16,7 +16,6 @@ class LibraryController < ApplicationController
   def show
     @library = Library.find(params[:id])
     @meta_title = meta_title @library.name
-    @meta_description = meta_description @library.content
     @lessons = @library.lessons.order(:tag)
 
     @joined = false

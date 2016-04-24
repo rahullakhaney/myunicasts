@@ -3,9 +3,8 @@
 <a class="side-navigation__toggle" id="navigation-toggle">☰</a>
 <div class="side-navigation__inner">
 <section class="side-navigation__body">
-<%= link_to "owlcasts", root_path, class: 'side-navigation__logo' %>
-<div class="side-navigation__item side-navigation__item--user">
-<%= link_to edit_user_registration_path, class: 'side-navigation__item-link' do %>
+
+<%= link_to edit_user_registration_path, class: 'side-navigation__logo' do %>
   <% if current_user.image? %>
     <%= image_tag current_user.image, class: 'user-avatar user-avatar--light-border user-avatar--right-spacing', size: '30' %>
   <% else %>
@@ -13,7 +12,8 @@
   <% end %>
 Hi <%= current_user.first_name %>!
 <% end %>
-
+<div class="side-navigation__item">
+  <%= link_to "Home", root_path, class: 'side-navigation__item-link' %>
 </div>
 <div class="side-navigation__item">
 <%= link_to library_index_path, class: 'side-navigation__item-link' do %>

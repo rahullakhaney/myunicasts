@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'premium' => 'pages#premium'
 
+  get    "lessons/read" => "completeds#show"
+  post   "lessons/mark_as_complete" => "completeds#create"
+  delete "lessons/mark_as_incomplete" => "completeds#delete"
+
   post '/free' => 'charge#free'
   post '/pay' => 'charge#pay'
 
