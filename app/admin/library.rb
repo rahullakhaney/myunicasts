@@ -1,3 +1,3 @@
 ActiveAdmin.register Library do
-  permit_params :name, :content, :read_time, :price, :subject_id, :video, :github
+  permit_params :name, :content, :read_time, :price, :subject_id, :video, :github, :preview
 end
