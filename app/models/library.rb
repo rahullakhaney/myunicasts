@@ -9,7 +9,7 @@ class Library < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 5000 }
-  validates :price, presence: true, numericality: { only_integer: true }
+  validates :price, presence: true
   validates :read_time, presence: true, numericality: { only_integer: true }
 
   def price_in_cents
