@@ -15,16 +15,5 @@ class Library < ActiveRecord::Base
   def price_in_cents
     price*100
   end
-
-  def str_tags=(input_tags)
-    self.tags = input_tags.split(/\W+/).map do |tag|
-      Tag.find_or_create_by(name: tag.downcase)
-    end
-  end
-
-  # This method will show the existing tags in our form
-  def str_tags
-    tags.map(&:name).join(' ')
-  end
   
 end
